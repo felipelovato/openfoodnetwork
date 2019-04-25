@@ -8,9 +8,9 @@ describe Admin::BulkLineItemsController, type: :controller do
 
     let(:line_item_attributes) { %i[id quantity max_quantity price supplier final_weight_volume units_product units_variant order] }
     let!(:dist1) { FactoryBot.create(:distributor_enterprise) }
-    let!(:order1) { FactoryBot.create(:order, state: 'complete', completed_at: 1.day.ago, distributor: dist1, billing_address: FactoryBot.create(:address) ) }
-    let!(:order2) { FactoryBot.create(:order, state: 'complete', completed_at: Time.zone.now, distributor: dist1, billing_address: FactoryBot.create(:address) ) }
-    let!(:order3) { FactoryBot.create(:order, state: 'complete', completed_at: Time.zone.now, distributor: dist1, billing_address: FactoryBot.create(:address) ) }
+    let!(:order1) { FactoryBot.create(:order, :complete, completed_at: 1.day.ago, distributor: dist1, billing_address: FactoryBot.create(:address) ) }
+    let!(:order2) { FactoryBot.create(:order, :complete, completed_at: Time.zone.now, distributor: dist1, billing_address: FactoryBot.create(:address) ) }
+    let!(:order3) { FactoryBot.create(:order, :complete, completed_at: Time.zone.now, distributor: dist1, billing_address: FactoryBot.create(:address) ) }
     let!(:line_item1) { FactoryBot.create(:line_item, order: order1) }
     let!(:line_item2) { FactoryBot.create(:line_item, order: order2) }
     let!(:line_item3) { FactoryBot.create(:line_item, order: order2) }
@@ -82,7 +82,7 @@ describe Admin::BulkLineItemsController, type: :controller do
       let(:distributor2) { create(:distributor_enterprise) }
       let(:coordinator) { create(:distributor_enterprise) }
       let(:order_cycle) { create(:simple_order_cycle, coordinator: coordinator) }
-      let!(:order1) { FactoryBot.create(:order, order_cycle: order_cycle, state: 'complete', completed_at: Time.zone.now, distributor: distributor1, billing_address: FactoryBot.create(:address) ) }
+      let!(:order1) { FactoryBot.create(:order, :complete, order_cycle: order_cycle, completed_at: Time.zone.now, distributor: distributor1, billing_address: FactoryBot.create(:address) ) }
       let!(:line_item1) { FactoryBot.create(:line_item, order: order1, product: FactoryBot.create(:product, supplier: supplier)) }
       let!(:line_item2) { FactoryBot.create(:line_item, order: order1, product: FactoryBot.create(:product, supplier: supplier)) }
       let!(:order2) { FactoryBot.create(:order, order_cycle: order_cycle, state: 'complete', completed_at: Time.zone.now, distributor: distributor2, billing_address: FactoryBot.create(:address) ) }
@@ -130,7 +130,7 @@ describe Admin::BulkLineItemsController, type: :controller do
     let(:distributor1) { create(:distributor_enterprise) }
     let(:coordinator) { create(:distributor_enterprise) }
     let(:order_cycle) { create(:simple_order_cycle, coordinator: coordinator) }
-    let!(:order1) { FactoryBot.create(:order, order_cycle: order_cycle, state: 'complete', completed_at: Time.zone.now, distributor: distributor1, billing_address: FactoryBot.create(:address) ) }
+    let!(:order1) { FactoryBot.create(:order, :complete, order_cycle: order_cycle, completed_at: Time.zone.now, distributor: distributor1, billing_address: FactoryBot.create(:address) ) }
     let!(:line_item1) { FactoryBot.create(:line_item, order: order1, product: FactoryBot.create(:product, supplier: supplier)) }
     let(:line_item_params) { { quantity: 3, final_weight_volume: 3000, price: 3.00 } }
     let(:params) { { id: line_item1.id, order_id: order1.number, line_item: line_item_params } }
@@ -226,7 +226,7 @@ describe Admin::BulkLineItemsController, type: :controller do
     let(:distributor1) { create(:distributor_enterprise) }
     let(:coordinator) { create(:distributor_enterprise) }
     let(:order_cycle) { create(:simple_order_cycle, coordinator: coordinator) }
-    let!(:order1) { FactoryBot.create(:order, order_cycle: order_cycle, state: 'complete', completed_at: Time.zone.now, distributor: distributor1, billing_address: FactoryBot.create(:address) ) }
+    let!(:order1) { FactoryBot.create(:order, :complete, order_cycle: order_cycle, completed_at: Time.zone.now, distributor: distributor1, billing_address: FactoryBot.create(:address) ) }
     let!(:line_item1) { FactoryBot.create(:line_item, order: order1, product: FactoryBot.create(:product, supplier: supplier)) }
     let(:params) { { id: line_item1.id, order_id: order1.number } }
 

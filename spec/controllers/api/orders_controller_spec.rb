@@ -15,15 +15,15 @@ module Api
       let!(:order_cycle) { create(:simple_order_cycle, coordinator: coordinator) }
       let!(:order_cycle2) { create(:simple_order_cycle, coordinator: coordinator2) }
       let!(:order1) do
-        create(:order, order_cycle: order_cycle, state: 'complete', completed_at: Time.zone.now,
+        create(:order, :complete, order_cycle: order_cycle, completed_at: Time.zone.now,
                        distributor: distributor, billing_address: create(:address) )
       end
       let!(:order2) do
-        create(:order, order_cycle: order_cycle, state: 'complete', completed_at: Time.zone.now,
+        create(:order, :complete, order_cycle: order_cycle, completed_at: Time.zone.now,
                        distributor: distributor2, billing_address: create(:address) )
       end
       let!(:order3) do
-        create(:order, order_cycle: order_cycle, state: 'complete', completed_at: Time.zone.now,
+        create(:order, :complete, order_cycle: order_cycle, completed_at: Time.zone.now,
                        distributor: distributor, billing_address: create(:address) )
       end
       let!(:order4) do
